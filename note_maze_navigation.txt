@@ -1,0 +1,48 @@
+start=Point(np.where(map=='^')[0],np.where(map=='^')[1])
+map[start.x,start.y]
+
+#directions={1:'up',2:'right',3:'down',4:'left'}
+#turn={1:'L',2:'R'}
+pos=start
+path=[]
+finished=False
+dire=1
+while finished==False:
+    if (dire==1 and map[pos.x,pos.y+1]=='#'
+        or dire==2 and map[pos.x+1,pos.y]=='#'
+        or dire==3 and map[pos.x,pos.y-1]=='#'
+        or dire==4 and map[pos.x-1,pos.y]=='#'):
+        j+=1
+    elif (dire==1 and map[pos.x,pos.y+1]=='.'
+        or dire==2 and map[pos.x+1,pos.y]=='.'
+        or dire==3 and map[pos.x,pos.y-1]=='.'
+        or dire==4 and map[pos.x-1,pos.y]=='.'):
+        path.append(j+',')
+        j=0
+        if dire==1 and map[pos.x+1,pos.y]=='#':
+            path.append('R')
+            dire=2
+        elif dire==1 and map[pos.x-1,pos.y]=='#':
+            path.append('L')
+            dire=4
+        elif dire==2 and map[pos.x,pos.y-1]=='#':
+            path.append('R')
+            dire=3
+        elif dir==2 and map[pos.x,pos.y+1]=='#':
+            path.append('L')
+            dire=1
+        elif dire==3 and map[pos.x-1,pos.y]=='#':
+            path.append('R')
+            dir=4
+        elif dire==3 and map[pos.x+1,pos.y]=='#':
+            path.append('L')
+            dire=2
+        elif dire==4 and map[pos.x,pos.y+1]=='#':
+            path.append('R')
+            dire=1
+        elif dir==4 and map[pos.x,pos.y-1]=='#':
+            path.append('L')
+            dire=3
+        else:
+            finished=True
+print(path)
